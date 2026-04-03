@@ -2,7 +2,9 @@
 
 ### Contributions:
 Atahan Akar: Created the initial SVM model and conducted both PCA and UMAP analysis
+
 Cyrus Carelo: TBD
+
 Nagham Sabhour: TBD
 
 ### Introduction:
