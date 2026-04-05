@@ -39,7 +39,7 @@ def main():
     append_to_log(log_path, f"Seeds: {seeds}")
     append_to_log(log_path, f"PCA dims: {pca_dims}")
     append_to_log(log_path, f"UMAP dims: {umap_dims}")
-    append_to_log(log_path, "-" * 60)
+    append_to_log(log_path, "-" * 40)
 
     results = {
         "baseline": [],
@@ -57,13 +57,13 @@ def main():
 
     # Run experiments
     for seed in seeds:
-        print("\n" + "-" * 30)
+        print("\n" + "-" * 40)
         print(f"Running experiments with seed {seed}")
-        print("-" * 30)
+        print("-" * 40)
 
-        append_to_log(log_path, "-" * 30)
+        append_to_log(log_path, "-" * 40)
         append_to_log(log_path, f"Running experiments with seed {seed}")
-        append_to_log(log_path, "-" * 30)
+        append_to_log(log_path, "-" * 40)
 
         X_train, X_test, y_train, y_test = split_and_scale_data(
             X,
@@ -185,13 +185,13 @@ def main():
                 )
 
     # Results
-    print("\n" + "-" * 30)
+    print("\n" + "-" * 40)
     print("Final Mean Results Across Seeds")
-    print("-" * 30)
+    print("-" * 40)
 
-    append_to_log(log_path, "-" * 30)
+    append_to_log(log_path, "-" * 40)
     append_to_log(log_path, "Final Mean Results Across Seeds")
-    append_to_log(log_path, "-" * 30)
+    append_to_log(log_path, "-" * 40)
 
     baseline_mean = np.mean(results["baseline"])
     baseline_std = np.std(results["baseline"])

@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def save_confusion_matrix(cm, class_names, title, filename):
     plt.figure(figsize=(6, 5))
