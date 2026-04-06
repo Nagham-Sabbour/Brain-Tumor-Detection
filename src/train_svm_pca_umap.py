@@ -78,7 +78,7 @@ def main():
         append_to_log(log_path, f"Feature dimension: {X_train.shape[1]}")
 
         # Baseline SVM
-        print("Training baseline SVM...")
+        print("\nTraining baseline SVM...")
         svm = LinearSVC(max_iter=5000, tol=1e-3)
         svm.fit(X_train, y_train)
 
@@ -110,7 +110,7 @@ def main():
 
         # PCA Experiments
         for d in pca_dims:
-            print(f"Training PCA + SVM (d={d})...")
+            print(f"\nTraining PCA + SVM (d={d})...")
             pca = PCA(n_components=d)
 
             X_train_pca = pca.fit_transform(X_train)
@@ -148,7 +148,7 @@ def main():
 
         # UMAP Experiment
         for d in umap_dims:
-            print(f"Training UMAP + SVM (d={d})...")
+            print(f"\nTraining UMAP + SVM (d={d})...")
             reducer = umap.UMAP(n_components=d, random_state=seed)
 
             X_train_umap = reducer.fit_transform(X_train)
