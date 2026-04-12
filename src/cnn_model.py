@@ -1,14 +1,12 @@
 import torch
 import torch.nn as nn
 
-
 class BrainTumorCNN(nn.Module):
     """
     Small CNN for 64x64 grayscale MRI images.
     Input:  (B, 1, 64, 64)
     Output: (B, 4)
     """
-
     def __init__(self, num_classes: int = 4):
         super().__init__()
 

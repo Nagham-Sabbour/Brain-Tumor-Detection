@@ -1,17 +1,15 @@
 import os
 from collections import Counter
-
 import cv2
 import numpy as np
+import pandas as pd
 import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
 import torchvision.transforms as transforms
 
-
 IMG_SIZE = 64
 LOCAL_DATASET_DIR = "data/brain_tumor_dataset"
-
 
 class BrainTumorDataset(Dataset):
     """
@@ -20,7 +18,6 @@ class BrainTumorDataset(Dataset):
         image tensor of shape (1, 64, 64)
         label as int
     """
-
     def __init__(self, images: np.ndarray, labels: np.ndarray, transform=None):
         self.images = images
         self.labels = labels
@@ -56,6 +53,7 @@ def load_images_from_folders(base_path: str, img_size: int = IMG_SIZE):
     """
     images = []
     labels = []
+    filepaths = []
 
     class_names = sorted(
         [d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))]
@@ -82,22 +80,16 @@ def load_images_from_folders(base_path: str, img_size: int = IMG_SIZE):
 
             images.append(img)
             labels.append(label)
+            filepaths.append(img_path)
             total_loaded += 1
 
             if i % 500 == 0:
                 print(f"  Loaded {i}/{len(file_names)} from {class_name}")
 
     print(f"Finished loading {total_loaded} images.")
-    return np.array(images), np.array(labels), class_names
+    return np.array(images), np.array(labels), np.array(filepaths), class_names
 
-
-def create_data_splits(
-    images: np.ndarray,
-    labels: np.ndarray,
-    val_size: float = 0.15,
-    test_size: float = 0.15,
-    random_state: int = 42,
-):
+def create_data_splits(images: np.ndarray, labels: np.ndarray, filepaths: np.ndarray, val_size: float = 0.15, test_size: float = 0.15, random_state: int = 42):
     """
     Creates train/val/test split with stratification.
     Final split is:
@@ -105,28 +97,27 @@ def create_data_splits(
     - 15% val
     - 15% test
     """
-    # first split off test
-    X_temp, X_test, y_temp, y_test = train_test_split(
+    X_temp, X_test, y_temp, y_test, fp_temp, fp_test = train_test_split(
         images,
         labels,
+        filepaths,
         test_size=test_size,
         random_state=random_state,
         stratify=labels,
     )
 
-    # then split remaining into train/val
     val_ratio_adjusted = val_size / (1.0 - test_size)
 
-    X_train, X_val, y_train, y_val = train_test_split(
+    X_train, X_val, y_train, y_val, _, _ = train_test_split(
         X_temp,
         y_temp,
+        fp_temp,
         test_size=val_ratio_adjusted,
         random_state=random_state,
         stratify=y_temp,
     )
 
-    return X_train, X_val, X_test, y_train, y_val, y_test
-
+    return X_train, X_val, X_test, y_train, y_val, y_test, fp_test
 
 def print_split_stats(y_train, y_val, y_test, class_names):
     print("\nSplit sizes:")
@@ -142,29 +133,37 @@ def print_split_stats(y_train, y_val, y_test, class_names):
     print("Val:  ", count_labels(y_val))
     print("Test: ", count_labels(y_test))
 
-
-def get_dataloaders(
-    batch_size: int = 32,
-    img_size: int = IMG_SIZE,
-    random_state: int = 42,
-):
+def get_dataloaders(batch_size: int = 32, img_size: int = IMG_SIZE, random_state: int = 42, save_split_dir=None):
     if not os.path.exists(LOCAL_DATASET_DIR):
         raise FileNotFoundError(
             f"Dataset folder not found at '{LOCAL_DATASET_DIR}'. "
             "Please make sure the dataset is downloaded there."
         )
 
-    images, labels, class_names = load_images_from_folders(
+    images, labels, filepaths, class_names = load_images_from_folders(
         LOCAL_DATASET_DIR, img_size=img_size
     )
 
-    X_train, X_val, X_test, y_train, y_val, y_test = create_data_splits(
+    X_train, X_val, X_test, y_train, y_val, y_test, fp_test = create_data_splits(
         images,
         labels,
+        filepaths,
         random_state=random_state,
     )
 
     print_split_stats(y_train, y_val, y_test, class_names)
+
+    if save_split_dir is not None:
+        os.makedirs(save_split_dir, exist_ok=True)
+
+        test_split_df = pd.DataFrame({
+            "filepath": fp_test,
+            "label": y_test,
+            "class_name": [class_names[i] for i in y_test],
+        })
+        test_split_df.to_csv(os.path.join(save_split_dir, "test_split.csv"), index=False)
+
+        print(f"Saved test split to: {os.path.join(save_split_dir, 'test_split.csv')}")
 
     train_transform = transforms.Compose([
         transforms.ToPILImage(),

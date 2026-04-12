@@ -2,7 +2,6 @@ import os
 import json
 import pickle
 from datetime import datetime
-
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -11,7 +10,6 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 
 from cnn_data import get_dataloaders
 from cnn_model import BrainTumorCNN
-
 
 def get_device():
     if torch.backends.mps.is_available():
@@ -23,11 +21,9 @@ def get_device():
     print("Using CPU.")
     return torch.device("cpu")
 
-
 def append_to_log(log_path, text):
     with open(log_path, "a") as f:
         f.write(text + "\n")
-
 
 def save_confusion_matrix(cm, class_names, title, filename):
     plt.figure(figsize=(6, 5))
@@ -44,7 +40,6 @@ def save_confusion_matrix(cm, class_names, title, filename):
     plt.tight_layout()
     plt.savefig(filename, bbox_inches="tight")
     plt.close()
-
 
 def save_training_curves(history, run_dir):
     epochs = range(1, len(history["train_loss"]) + 1)
@@ -70,7 +65,6 @@ def save_training_curves(history, run_dir):
     plt.tight_layout()
     plt.savefig(os.path.join(run_dir, "accuracy_curve.png"))
     plt.close()
-
 
 def evaluate_model(model, loader, device):
     model.eval()
@@ -99,7 +93,6 @@ def evaluate_model(model, loader, device):
     acc = accuracy_score(all_labels, all_preds)
 
     return avg_loss, acc, all_labels, all_preds
-
 
 def train_one_epoch(model, loader, optimizer, criterion, device):
     model.train()
@@ -131,7 +124,6 @@ def train_one_epoch(model, loader, optimizer, criterion, device):
 
     return epoch_loss, epoch_acc
 
-
 def main():
     # config
     batch_size = 32
@@ -156,6 +148,7 @@ def main():
     train_loader, val_loader, test_loader, class_names = get_dataloaders(
         batch_size=batch_size,
         random_state=random_state,
+        save_split_dir=run_dir
     )
 
     device = get_device()
@@ -282,7 +275,6 @@ def main():
         pickle.dump(results, f)
 
     print(f"\nSaved CNN results to: {run_dir}")
-
 
 if __name__ == "__main__":
     main()
