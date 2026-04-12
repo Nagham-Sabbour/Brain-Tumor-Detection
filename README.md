@@ -1,9 +1,9 @@
 # Brain-Tumor-Detection
 
 ### Contributions:
-Atahan Akar: Created the initial SVM model and conducted both PCA and UMAP analysis
+Atahan Akar was responsible for implementing and evaluating dimensionality reduction techniques. This included applying Principal Component Analysis (PCA) and Uniform Manifold Approximation and Projection (UMAP), integrating them into the machine learning pipeline, and comparing their performance against a baseline model without dimensionality reduction. He also conducted experiments to analyze the trade-offs between dimensionality reduction and classification accuracy.
 
-Cyrus Carelo: TBD
+Cyrus Carelo was responsible for conducting the literature review for this project. Additionally he prepared the sample notebook,  tuning and analysing SVM performance on non-overlapping brain tumor datasets. Additionally, the sample notebook allows for visualising individual images and the class distribution for each dataset for easy sanity checks. Finally, accuracy scores and confusion matrices are plotted in the results.
 
 Nagham Sabhour: TBD
 
