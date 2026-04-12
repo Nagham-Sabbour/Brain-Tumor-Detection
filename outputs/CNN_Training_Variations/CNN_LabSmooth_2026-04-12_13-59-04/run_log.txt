@@ -1,0 +1,115 @@
+Run directory: outputs/CNN_baseline_2026-04-12_13-59-04
+Model: BrainTumorCNN
+Batch size: 32
+Learning rate: 0.001
+Epochs: 50
+------------------------------------------------------------
+BrainTumorCNN(
+  (features): Sequential(
+    (0): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (classifier): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): Linear(in_features=8192, out_features=128, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=128, out_features=4, bias=True)
+  )
+)
+Epoch 1: Train Loss=0.9401, Train Acc=0.6057, Val Loss=0.8634, Val Acc=0.7260
+Saved new best model.
+Epoch 2: Train Loss=0.6917, Train Acc=0.7089, Val Loss=0.8517, Val Acc=0.7670
+Saved new best model.
+Epoch 3: Train Loss=0.6164, Train Acc=0.7347, Val Loss=0.9376, Val Acc=0.7494
+Epoch 4: Train Loss=0.5517, Train Acc=0.7660, Val Loss=0.8346, Val Acc=0.8157
+Saved new best model.
+Epoch 5: Train Loss=0.5224, Train Acc=0.7825, Val Loss=0.8490, Val Acc=0.8479
+Saved new best model.
+Epoch 6: Train Loss=0.4736, Train Acc=0.8071, Val Loss=0.9162, Val Acc=0.8352
+Epoch 7: Train Loss=0.4585, Train Acc=0.8136, Val Loss=0.8393, Val Acc=0.8441
+Epoch 8: Train Loss=0.4200, Train Acc=0.8286, Val Loss=0.8974, Val Acc=0.8819
+Saved new best model.
+Epoch 9: Train Loss=0.3842, Train Acc=0.8448, Val Loss=0.7635, Val Acc=0.9028
+Saved new best model.
+Epoch 10: Train Loss=0.3632, Train Acc=0.8552, Val Loss=0.8637, Val Acc=0.8990
+Epoch 11: Train Loss=0.3232, Train Acc=0.8658, Val Loss=0.8780, Val Acc=0.9053
+Saved new best model.
+Epoch 12: Train Loss=0.3143, Train Acc=0.8755, Val Loss=0.8070, Val Acc=0.9141
+Saved new best model.
+Epoch 13: Train Loss=0.3017, Train Acc=0.8833, Val Loss=0.7892, Val Acc=0.9236
+Saved new best model.
+Epoch 14: Train Loss=0.2781, Train Acc=0.8903, Val Loss=0.8970, Val Acc=0.9242
+Saved new best model.
+Epoch 15: Train Loss=0.2628, Train Acc=0.8948, Val Loss=0.9985, Val Acc=0.9337
+Saved new best model.
+Epoch 16: Train Loss=0.2480, Train Acc=0.9003, Val Loss=0.9356, Val Acc=0.9261
+Epoch 17: Train Loss=0.2507, Train Acc=0.9002, Val Loss=0.9838, Val Acc=0.9369
+Saved new best model.
+Epoch 18: Train Loss=0.2312, Train Acc=0.9085, Val Loss=0.9967, Val Acc=0.9324
+Epoch 19: Train Loss=0.2169, Train Acc=0.9130, Val Loss=0.9492, Val Acc=0.9287
+Epoch 20: Train Loss=0.2052, Train Acc=0.9209, Val Loss=1.0519, Val Acc=0.9432
+Saved new best model.
+Epoch 21: Train Loss=0.1988, Train Acc=0.9251, Val Loss=1.1241, Val Acc=0.9362
+Epoch 22: Train Loss=0.1885, Train Acc=0.9267, Val Loss=1.0680, Val Acc=0.9470
+Saved new best model.
+Epoch 23: Train Loss=0.1868, Train Acc=0.9299, Val Loss=1.1736, Val Acc=0.9558
+Saved new best model.
+Epoch 24: Train Loss=0.1781, Train Acc=0.9322, Val Loss=1.0829, Val Acc=0.9419
+Epoch 25: Train Loss=0.1593, Train Acc=0.9390, Val Loss=1.2375, Val Acc=0.9489
+Epoch 26: Train Loss=0.1631, Train Acc=0.9368, Val Loss=1.2825, Val Acc=0.9438
+Epoch 27: Train Loss=0.1675, Train Acc=0.9379, Val Loss=1.1948, Val Acc=0.9299
+Epoch 28: Train Loss=0.1614, Train Acc=0.9389, Val Loss=1.1890, Val Acc=0.9596
+Saved new best model.
+Epoch 29: Train Loss=0.1504, Train Acc=0.9398, Val Loss=1.2133, Val Acc=0.9596
+Epoch 30: Train Loss=0.1491, Train Acc=0.9452, Val Loss=1.2030, Val Acc=0.9621
+Saved new best model.
+Epoch 31: Train Loss=0.1349, Train Acc=0.9504, Val Loss=1.2561, Val Acc=0.9621
+Epoch 32: Train Loss=0.1294, Train Acc=0.9471, Val Loss=1.3660, Val Acc=0.9684
+Saved new best model.
+Epoch 33: Train Loss=0.1379, Train Acc=0.9498, Val Loss=1.3902, Val Acc=0.9514
+Epoch 34: Train Loss=0.1346, Train Acc=0.9483, Val Loss=1.3614, Val Acc=0.9552
+Epoch 35: Train Loss=0.1236, Train Acc=0.9567, Val Loss=1.3771, Val Acc=0.9628
+Epoch 36: Train Loss=0.1160, Train Acc=0.9562, Val Loss=1.3941, Val Acc=0.9489
+Epoch 37: Train Loss=0.1240, Train Acc=0.9543, Val Loss=1.4179, Val Acc=0.9609
+Epoch 38: Train Loss=0.1215, Train Acc=0.9540, Val Loss=1.5843, Val Acc=0.9665
+Epoch 39: Train Loss=0.1182, Train Acc=0.9548, Val Loss=1.4493, Val Acc=0.9571
+Epoch 40: Train Loss=0.1096, Train Acc=0.9600, Val Loss=1.3154, Val Acc=0.9665
+Epoch 41: Train Loss=0.1157, Train Acc=0.9571, Val Loss=1.4464, Val Acc=0.9590
+Epoch 42: Train Loss=0.1180, Train Acc=0.9544, Val Loss=1.4151, Val Acc=0.9659
+Epoch 43: Train Loss=0.1046, Train Acc=0.9621, Val Loss=1.6102, Val Acc=0.9634
+Epoch 44: Train Loss=0.1131, Train Acc=0.9601, Val Loss=1.3983, Val Acc=0.9659
+Epoch 45: Train Loss=0.1107, Train Acc=0.9598, Val Loss=1.3213, Val Acc=0.9621
+Epoch 46: Train Loss=0.1075, Train Acc=0.9598, Val Loss=1.5556, Val Acc=0.9722
+Saved new best model.
+Epoch 47: Train Loss=0.0979, Train Acc=0.9625, Val Loss=1.5894, Val Acc=0.9665
+Epoch 48: Train Loss=0.0990, Train Acc=0.9635, Val Loss=1.6891, Val Acc=0.9710
+Epoch 49: Train Loss=0.0997, Train Acc=0.9642, Val Loss=1.5364, Val Acc=0.9697
+Epoch 50: Train Loss=0.1043, Train Acc=0.9625, Val Loss=1.5879, Val Acc=0.9691
+
+Final Test Results
+Test Loss: 1.5484
+Test Accuracy: 0.9697
+              precision    recall  f1-score   support
+
+      glioma     0.9871    0.9503    0.9683       563
+  meningioma     0.9307    0.9573    0.9438       351
+    no_tumor     0.9811    0.9848    0.9830       264
+   pituitary     0.9736    0.9975    0.9854       406
+
+    accuracy                         0.9697      1584
+   macro avg     0.9681    0.9725    0.9701      1584
+weighted avg     0.9701    0.9697    0.9697      1584
+
+Confusion Matrix:
+[[535  23   3   2]
+ [  6 336   2   7]
+ [  1   1 260   2]
+ [  0   1   0 405]]
