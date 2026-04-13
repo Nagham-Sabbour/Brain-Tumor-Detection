@@ -3,9 +3,9 @@
 ### Contributions:
 Atahan Akar: Created the initial SVM model and conducted both PCA and UMAP analysis
 
-Cyrus Carelo: TBD
+Cyrus Carelo: Created sample notebook for SVM
 
-Nagham Sabhour: TBD
+Nagham Sabhour: Created sample notebook for CNN
 
 ### Introduction:
 Brain tumors are among the most serious neurological conditions and early detection is critical for effective treatment. Magnetic Resonance Imaging (MRI) is widely used for identifying brain abnormalities due to its detailed imaging capabilities. However, manual inspection of MRI scans by radiologists can be time-consuming and is subject to human variability. Thus, automated tools that assist in identifying abnormal patterns in MRI images may facilitate diagnostic efficiency.
